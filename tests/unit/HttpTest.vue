@@ -9,7 +9,6 @@ export default defineComponent({
   name: 'HttpTest',
   setup(props, { emit, attrs, slots }) {
     onMounted(() => {
-      console.log('onMounted')
       axios.get('/')
     })
     return {}
