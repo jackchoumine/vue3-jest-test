@@ -2,22 +2,29 @@
  * @Description :
  * @Date        : 2022-10-29 19:03:34 +0800
  * @Author      : JackChou
- * @LastEditTime: 2022-10-29 19:47:25 +0800
+ * @LastEditTime: 2022-10-29 19:58:27 +0800
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
 const App = {
   props: {
     count: Number,
   },
   data() {
-    return { msg: 'hello' }
+    return { msg: 'hello', innerCount: 0 }
+  },
+  methods: {
+    add() {
+      this.innerCount += 1
+    },
   },
   /*html*/
   template: `
   <div v-if="count % 2 === 0">count:{{count}}. count is even.</div>
   <div v-else>count:{{count}}. count is odd.</div>
   <h2>{{msg}}</h2>
+  <button @click="add">{{innerCount}}</button>
   `,
 }
 
@@ -49,6 +56,14 @@ describe('App', () => {
     const evenNumber = 4
     const wrapper = factory({ props: { count: evenNumber } })
     expect(wrapper.html()).toContain(`count:${evenNumber}. count is even`)
+  })
+  it('测试事件', async () => {
+    const evenNumber = 4
+    const wrapper = factory({ props: { count: evenNumber } })
+    wrapper.find('button').trigger('click')
+    // 等待视图更新
+    await nextTick()
+    expect(wrapper.find('button').text()).toBe('1')
   })
 })
 
