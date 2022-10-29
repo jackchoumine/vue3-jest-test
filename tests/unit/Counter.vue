@@ -7,6 +7,10 @@
 -->
 <template>
   <button @click="add">{{ count }}</button>
+  <div>
+    postId:
+    {{ postId }}
+  </div>
 </template>
 
 <script>
@@ -16,6 +20,9 @@
 export default {
   name: 'Counter',
   computed: {
+    postId() {
+      return this.$router.params.postId
+    },
     count() {
       return this.$store.state.count
     },

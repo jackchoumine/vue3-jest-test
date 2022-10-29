@@ -27,6 +27,14 @@ function factory() {
   return mount(Counter, {
     global: {
       plugins: [store],
+      // NOTE 使用 mocks 模块路由
+      mocks: {
+        $router: {
+          params: {
+            postId: '123',
+          },
+        },
+      },
     },
   })
 }
@@ -46,5 +54,10 @@ describe('Counter', () => {
     await button.trigger('click')
     await button.trigger('click')
     expect(wrapper.find('button').text()).toBe('2')
+  })
+
+  it('测试模拟路由', () => {
+    const wrapper = factory()
+    expect(wrapper.find('div').text()).toContain('postId: 123')
   })
 })
