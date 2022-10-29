@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2022-10-29 19:03:34 +0800
  * @Author      : JackChou
- * @LastEditTime: 2022-10-29 19:44:19 +0800
+ * @LastEditTime: 2022-10-29 19:47:25 +0800
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
@@ -26,7 +26,9 @@ function factory({ props, data }) {
   // const app =  createApp() app.mount()
   return mount(App, {
     props,
-    data,
+    data() {
+      return data
+    },
   })
 }
 describe('App', () => {
@@ -35,9 +37,7 @@ describe('App', () => {
     const hello = 'hello'
     const wrapper = factory({
       props: { count: odd },
-      data() {
-        return { msg: hello }
-      },
+      data: { msg: hello },
     })
     // NOTE 输出一个对象
     // console.log(wrapper.vm)
