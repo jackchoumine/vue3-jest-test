@@ -42,4 +42,12 @@ describe('HttpTest', () => {
     expect(mockGet).toHaveBeenCalled()
     expect(mockGet).toHaveBeenCalledTimes(1)
   })
+
+  it('测试自定义事件', () => {
+    const wrapper = factory()
+    const button = wrapper.find('button')
+    button.trigger('click')
+    console.log(wrapper.emitted())
+    expect(wrapper.emitted()['my-click'][0][0]).toBe('hello')
+  })
 })

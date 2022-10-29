@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <button type="button" @click="onClick"></button>
   <subComponent />
   <HelloWorld />
 </template>
@@ -13,7 +13,12 @@ export default defineComponent({
     onMounted(() => {
       axios.get('/')
     })
-    return {}
+    function onClick() {
+      emit('my-click', 'hello', 123)
+    }
+    return {
+      onClick,
+    }
   },
 })
 </script>
