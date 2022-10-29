@@ -1,5 +1,7 @@
 <template>
   <div></div>
+  <subComponent />
+  <HelloWorld />
 </template>
 
 <script>

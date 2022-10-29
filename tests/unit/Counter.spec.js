@@ -39,16 +39,7 @@ function factory() {
   })
 }
 
-let mockGet = '' //jest.fn()
-
-jest.mock('axios', () => {
-  return { get: () => mockGet() }
-})
 describe('Counter', () => {
-  // 每个 it 都会执行
-  beforeEach(() => {
-    mockGet = jest.fn()
-  })
   it('测试store', async () => {
     const wrapper = factory()
     const button = wrapper.find('button')
@@ -68,11 +59,5 @@ describe('Counter', () => {
   it('测试模拟路由', () => {
     const wrapper = factory()
     expect(wrapper.find('div').text()).toContain('postId: 123')
-  })
-
-  it('测试 http 请求', () => {
-    const wrapper = factory()
-    expect(mockGet).toHaveBeenCalled()
-    expect(mockGet).toHaveBeenCalledTimes(1)
   })
 })
