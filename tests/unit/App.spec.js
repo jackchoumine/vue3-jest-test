@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2022-10-29 19:03:34 +0800
  * @Author      : JackChou
- * @LastEditTime: 2022-10-29 19:58:27 +0800
+ * @LastEditTime: 2022-10-29 20:01:18 +0800
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
@@ -60,9 +60,11 @@ describe('App', () => {
   it('测试事件', async () => {
     const evenNumber = 4
     const wrapper = factory({ props: { count: evenNumber } })
-    wrapper.find('button').trigger('click')
+    // wrapper.find('button').trigger('click')
     // 等待视图更新
-    await nextTick()
+    // await nextTick()
+    // await 的简写
+    await wrapper.find('button').trigger('click')
     expect(wrapper.find('button').text()).toBe('1')
   })
 })
