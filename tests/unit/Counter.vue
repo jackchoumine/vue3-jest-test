@@ -11,14 +11,18 @@
     postId:
     {{ postId }}
   </div>
+  <HttpTest />
 </template>
 
 <script>
 // import { computed } from 'vue'
 // import { useStore } from 'vuex'
-
+import HttpTest from './HttpTest.vue'
 export default {
   name: 'Counter',
+  components: {
+    HttpTest,
+  },
   computed: {
     postId() {
       return this.$router.params.postId
