@@ -5,11 +5,11 @@
  * @LastEditTime: 2022-10-29 20:28:38 +0800
  * @LastEditors : JackChou
  */
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import HttpTest from './HttpTest.vue'
 
 function factory() {
-  return mount(HttpTest, {
+  return shallowMount(HttpTest, {
     global: {
       stubs: {
         subComponent: {
