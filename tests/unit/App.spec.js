@@ -2,28 +2,34 @@
  * @Description :
  * @Date        : 2022-10-29 19:03:34 +0800
  * @Author      : JackChou
- * @LastEditTime: 2022-10-29 20:02:23 +0800
+ * @LastEditTime: 2022-10-29 20:07:16 +0800
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
+import { ref } from 'vue'
 const App = {
   props: {
     count: Number,
   },
-  data() {
-    return { msg: 'hello', innerCount: 0 }
-  },
-  methods: {
-    add() {
-      this.innerCount += 1
-    },
+  // data() {
+  //   return { msg: 'hello', innerCount: 0 }
+  // },
+  // methods: {
+  //   add() {
+  //     this.innerCount += 1
+  //   },
+  // },
+  setup() {
+    const innerCount = ref(0)
+    function add() {
+      innerCount.value += 1
+    }
+    return { innerCount, add }
   },
   /*html*/
   template: `
   <div v-if="count % 2 === 0">count:{{count}}. count is even.</div>
   <div v-else>count:{{count}}. count is odd.</div>
-  <h2>{{msg}}</h2>
   <button @click="add">{{innerCount}}</button>
   `,
 }
@@ -49,7 +55,7 @@ describe('App', () => {
     // NOTE 输出一个对象
     // console.log(wrapper.vm)
     expect(wrapper.html()).toContain(`count:${odd}. count is odd`)
-    expect(wrapper.find('h2').text()).toBe(hello)
+    // expect(wrapper.find('h2').text()).toBe(hello)
   })
   // NOTE xit 跳过这个测试
   it('should render with even', () => {
