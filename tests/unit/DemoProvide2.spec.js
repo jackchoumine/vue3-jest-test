@@ -6,7 +6,7 @@
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
-import Counter from './Counter.vue'
+import DemoProvide2 from './DemoProvide.vue'
 import { reactive } from 'vue'
 
 function factory() {
@@ -14,7 +14,7 @@ function factory() {
   // 不想在全局注册，app.provide('store',store)
   // 可使用 reactive 模拟 store
   const state = reactive({ count: 0 })
-  return mount(Counter, {
+  return mount(DemoProvide2, {
     global: {
       provide: {
         store: {
@@ -28,8 +28,8 @@ function factory() {
   })
 }
 
-describe('DemoProvide', () => {
-  it('测试inject', async () => {
+describe('DemoProvide2', () => {
+  it('使用 reactive 模拟 store', async () => {
     const wrapper = factory()
     const button = wrapper.find('button')
     await button.trigger('click')

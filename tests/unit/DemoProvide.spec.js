@@ -6,7 +6,7 @@
  * @LastEditors : JackChou
  */
 import { mount } from '@vue/test-utils'
-import Counter from './Counter.vue'
+import DemoProvide from './DemoProvide.vue'
 import { createStore } from 'vuex'
 
 function createLocalStore() {
@@ -24,7 +24,7 @@ function createLocalStore() {
 }
 function factory() {
   const store = createLocalStore()
-  return mount(Counter, {
+  return mount(DemoProvide, {
     global: {
       provide: {
         store,

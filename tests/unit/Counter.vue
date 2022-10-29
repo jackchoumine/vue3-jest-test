@@ -10,26 +10,32 @@
 </template>
 
 <script>
-import { computed, defineComponent } from 'vue'
-import { useStore } from 'vuex'
+// import { computed } from 'vue'
+// import { useStore } from 'vuex'
 
-export default defineComponent({
+export default {
   name: 'Counter',
-  props: {
-    count: Number,
+  computed: {
+    count() {
+      return this.$store.state.count
+    },
   },
-  components: {},
-  setup(props, { emit, attrs, slots }) {
-    const store = useStore()
-    const count = computed(() => {
-      return store.state.count
-    })
-    function add() {
-      store.commit('add')
-    }
-    return { count, add }
+  methods: {
+    add() {
+      this.$store.commit('add')
+    },
   },
-})
+  // setup(props, { emit, attrs, slots }) {
+  //   const store = useStore()
+  //   const count = computed(() => {
+  //     return store.state.count
+  //   })
+  //   function add() {
+  //     store.commit('add')
+  //   }
+  //   return { count, add }
+  // },
+}
 </script>
 
 <style scoped lang="scss"></style>
