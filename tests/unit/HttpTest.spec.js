@@ -33,6 +33,8 @@ describe('HttpTest', () => {
   })
 
   it('模拟子组件', () => {
+    console.log(HttpTest)
+    debugger
     const wrapper = factory()
     console.log(wrapper.html())
   })
