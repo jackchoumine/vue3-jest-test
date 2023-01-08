@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2022-10-29 20:16:13 +0800
  * @Author      : JackChou
- * @LastEditTime: 2022-10-29 20:28:38 +0800
+ * @LastEditTime: 2023-01-08 15:40:13 +0800
  * @LastEditors : JackChou
  */
 import { shallowMount } from '@vue/test-utils'
@@ -49,7 +49,15 @@ describe('HttpTest', () => {
     const wrapper = factory()
     const button = wrapper.find('button')
     button.trigger('click')
+    button.trigger('click')
     console.log(wrapper.emitted())
-    expect(wrapper.emitted()['my-click'][0][0]).toBe('hello')
+    console.log(wrapper.emitted('my-click'))
+    // NOTE 自定义事件
+    expect(wrapper.emitted()).toHaveProperty('my-click')
+    // NOTE 自定义事件抛出的数据
+    // 第一次触发保存在 0 下标  第二次触发 保存在 1 下标
+    expect(wrapper.emitted('my-click')[0]).toEqual(['hello', 123])
+    expect(wrapper.emitted('my-click')[1]).toEqual(['hello', 123])
+    // expect(wrapper.emitted()['my-click'][0][0]).toBe('hello')
   })
 })
