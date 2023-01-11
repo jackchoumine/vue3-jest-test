@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "unit": "jest --watch",
     "test:unit": "vue-cli-service test:unit",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --no-cache --runInBand"
   },
